@@ -1,0 +1,12 @@
+node_modules/
+dist
+logs
+*.log
+coverage
+.npm
+.eslintcache
+.idea
+.vscode
+.DS_STORE
+.DS_Store
+./git

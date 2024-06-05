@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "baseUrl": "./",
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "checkJs": true,
+    "isolatedModules": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ]
+    },
+    "removeComments": true,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.json",
+    "webpack.config.js",
+    "dist",
+    "public"
+  ],
+  "include": [
+    "./**/*"
+  ]
+}
