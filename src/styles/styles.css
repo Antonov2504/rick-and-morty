@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('./../assets/fonts/PT Root UI_Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./../assets/fonts/PT Root UI_Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./../assets/fonts/PT Root UI_Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./../assets/fonts/PT Root UI_Bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./../assets/fonts/RobotoMono-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./../assets/fonts/RobotoMono-Bold.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  height: 100%;
+}
+
+body * {
+  font-family: 'PT Root UI', 'Roboto', Arial, sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
