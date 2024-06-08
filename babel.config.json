@@ -25,11 +25,6 @@
     [
       "@babel/plugin-transform-object-assign"
     ],
-    [
-      "styled-components",
-      {
-        "pure": true
-      }
-    ]
+    ["babel-plugin-styled-components"]
   ]
 }
