@@ -4,13 +4,20 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 15px;
   width: 100%;
   padding: 1vh 2vw;
   background-color: rgba(0 0 0 / 70%);
   box-shadow: 0px 3px 20px #000000;
+`;
+
+export const Side = styled.header`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
 `;
 
 export const Title = styled.h1`
@@ -35,4 +42,18 @@ export const BackIcon = styled(ArrowRight)`
   path {
     fill: #c4dd52;
   }
+`;
+
+export const Label = styled.p`
+  margin: 0;
+  color: #54aa59;
+  font-size: 24px;
+  line-height: 1.25;
+`;
+
+export const Value = styled.p`
+  margin: 0;
+  color: #6bb0c8;
+  font-size: 24px;
+  line-height: 1.25;
 `;

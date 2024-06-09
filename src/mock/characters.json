@@ -20,16 +20,6 @@
     "created": "2017-11-04T18:50:21.651Z"
   },
   {
-    "id": 3,
-    "name": "Summer Smith",
-    "status": "Alive",
-    "species": "Human",
-    "type": "",
-    "gender": "Female",
-    "image": "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
-    "created": "2017-11-04T19:09:56.428Z"
-  },
-  {
     "id": 4,
     "name": "Beth Smith",
     "status": "Alive",
@@ -48,7 +38,17 @@
     "gender": "Male",
     "image": "https://rickandmortyapi.com/api/character/avatar/5.jpeg",
     "created": "2017-11-04T19:26:56.301Z"
-  },
+    },
+      {
+        "id": 3,
+        "name": "Summer Smith",
+        "status": "Alive",
+        "species": "Human",
+        "type": "",
+        "gender": "Female",
+        "image": "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
+        "created": "2017-11-04T19:09:56.428Z"
+      },
   {
     "id": 6,
     "name": "Abadango Cluster Princess",
@@ -68,6 +68,16 @@
     "gender": "Male",
     "image": "https://rickandmortyapi.com/api/character/avatar/7.jpeg",
     "created": "2017-11-04T19:59:20.523Z"
+  },
+  {
+    "id": 18,
+    "name": "Antenna Morty",
+    "status": "Alive",
+    "species": "Human",
+    "type": "Human with antennae",
+    "gender": "Male",
+    "image": "https://rickandmortyapi.com/api/character/avatar/18.jpeg",
+    "created": "2017-11-04T22:25:29.008Z"
   },
   {
     "id": 8,
@@ -140,16 +150,6 @@
     "created": "2017-11-04T20:51:31.373Z"
   },
   {
-    "id": 15,
-    "name": "Alien Rick",
-    "status": "unknown",
-    "species": "Alien",
-    "type": "",
-    "gender": "Male",
-    "image": "https://rickandmortyapi.com/api/character/avatar/15.jpeg",
-    "created": "2017-11-04T20:56:13.215Z"
-  },
-  {
     "id": 16,
     "name": "Amish Cyborg",
     "status": "Dead",
@@ -160,6 +160,16 @@
     "created": "2017-11-04T21:12:45.235Z"
   },
   {
+    "id": 15,
+    "name": "Alien Rick",
+    "status": "unknown",
+    "species": "Alien",
+    "type": "",
+    "gender": "Male",
+    "image": "https://rickandmortyapi.com/api/character/avatar/15.jpeg",
+    "created": "2017-11-04T20:56:13.215Z"
+  },
+  {
     "id": 17,
     "name": "Annie",
     "status": "Alive",
@@ -168,16 +178,6 @@
     "gender": "Female",
     "image": "https://rickandmortyapi.com/api/character/avatar/17.jpeg",
     "created": "2017-11-04T22:21:24.481Z"
-  },
-  {
-    "id": 18,
-    "name": "Antenna Morty",
-    "status": "Alive",
-    "species": "Human",
-    "type": "Human with antennae",
-    "gender": "Male",
-    "image": "https://rickandmortyapi.com/api/character/avatar/18.jpeg",
-    "created": "2017-11-04T22:25:29.008Z"
   },
   {
     "id": 19,

@@ -10,6 +10,7 @@ import { Card } from '@components/Card';
 import { useNavigate } from 'react-router-dom';
 import { Page } from '@constants/pages';
 import { TCharacter } from '@pages/CharactersPages/CharactersPages.types';
+import { useSort } from '@src/hooks/useSort';
 
 const CHARACTERS: TCharacter[] = charactersJSON;
 const TITLE = 'Characters';
@@ -17,16 +18,21 @@ const TITLE = 'Characters';
 export const CharactersPage = () => {
   const navigate = useNavigate();
 
+  const { onSort, currentSort, sortedData } = useSort({
+    data: CHARACTERS.map((c) => ({ ...c, created: new Date(c.created).valueOf() })),
+    key: 'created',
+  });
+
   const handleClick = (id: number) => {
     navigate(`${Page.characters}/${id}`);
   };
 
   return (
     <>
-      <PageHeader title={TITLE} />
+      <PageHeader title={TITLE} sortButton={{ currentSort, onSort }} />
       <Container>
         <Styled.Cards>
-          {CHARACTERS.map(({ id, name, image }) => (
+          {sortedData.map(({ id, name, image }) => (
             <Card key={id} id={id} title={name} src={image} onClick={handleClick} />
           ))}
         </Styled.Cards>

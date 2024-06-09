@@ -11,6 +11,7 @@ import { Page } from '@constants/pages';
 
 import * as Styled from './EpisodesPage.styled';
 import { TEpisode } from '@pages/EpisodesPages/EpisodesPages.types';
+import { useSort } from '@src/hooks/useSort';
 
 const EPISODES: TEpisode[] = episodesJSON;
 const TITLE = 'Episodes';
@@ -18,16 +19,21 @@ const TITLE = 'Episodes';
 export const EpisodesPage = () => {
   const navigate = useNavigate();
 
+  const { onSort, currentSort, sortedData } = useSort({
+    data: EPISODES.map((c) => ({ ...c, created: new Date(c.created).valueOf() })),
+    key: 'created',
+  });
+
   const handleClick = (id: number) => {
     navigate(`${Page.episodes}/${id}`);
   };
 
   return (
     <>
-      <PageHeader title={TITLE} />
+      <PageHeader title={TITLE} sortButton={{ currentSort, onSort }} />
       <Container>
         <Styled.Cards>
-          {EPISODES.map(({ id, name }) => (
+          {sortedData.map(({ id, name }) => (
             <Card key={id} id={id} title={name} onClick={handleClick} />
           ))}
         </Styled.Cards>
