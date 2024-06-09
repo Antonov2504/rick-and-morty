@@ -1,22 +1,28 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
-import * as Styled from './PortalLayout.styled';
 import { Page } from '@constants/pages';
+import * as Styled from './PortalLayout.styled';
 
 export const PortalLayout = () => {
+  const location = useLocation();
+
   return (
     <Styled.Container>
-      <Styled.Nav>
-        <Styled.NavList>
-          <Styled.NavListItem><NavLink to={Page.characters}>Герои</NavLink></Styled.NavListItem>
-          <Styled.NavListItem><NavLink to={Page.locations}>Локации</NavLink></Styled.NavListItem>
-          <Styled.NavListItem><NavLink to={Page.episodes}>Эпизоды</NavLink></Styled.NavListItem>
-        </Styled.NavList>
-      </Styled.Nav>
       <Styled.OutletWrapper>
         <Outlet />
       </Styled.OutletWrapper>
+
+      <Styled.Nav>
+        <Styled.NavList>
+          <Styled.NavListItem><Styled.NavListLink to={Page.home}>Home</Styled.NavListLink></Styled.NavListItem>
+          <Styled.NavListItem><Styled.NavListLink to={Page.characters}>Characters</Styled.NavListLink></Styled.NavListItem>
+          <Styled.NavListItem><Styled.NavListLink to={Page.locations}>Locations</Styled.NavListLink></Styled.NavListItem>
+          <Styled.NavListItem><Styled.NavListLink to={Page.episodes}>Episodes</Styled.NavListLink></Styled.NavListItem>
+        </Styled.NavList>
+      </Styled.Nav>
+
+      <Styled.Background $path={'/' + location.pathname.split('/')[1]} />
     </Styled.Container>
   );
 };

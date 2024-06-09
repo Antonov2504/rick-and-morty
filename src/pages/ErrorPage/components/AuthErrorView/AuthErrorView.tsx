@@ -6,6 +6,9 @@ import { errorsMock } from '@pages/ErrorPage/ErrorPage.mocks';
 
 import { ErrorPageDescriptionEnum } from '@pages/ErrorPage/ErrorPage.types';
 
+import * as Styled from './AuthErrorView.styled';
+import { PrimaryButton } from '@components/PrimaryButton';
+
 type AuthErrorViewProps = {
   status: ErrorPageDescriptionEnum;
 };
@@ -20,10 +23,13 @@ export const AuthErrorView = ({ status }: AuthErrorViewProps) => {
   };
 
   return (
-    <>
-      <p>{code}</p>
-      <p>{title}</p>
-      <button type="button" onClick={handleGoHome}>На Главную</button>
-    </>
+    <Styled.Container>
+      <Styled.Content>
+        <Styled.Code>{code}</Styled.Code>
+        <Styled.Title>{title}</Styled.Title>
+        <PrimaryButton title='Go Home Page' onClick={handleGoHome} />
+      </Styled.Content>
+      <Styled.Background />
+    </Styled.Container>
   );
 };
