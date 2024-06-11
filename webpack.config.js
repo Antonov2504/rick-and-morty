@@ -7,9 +7,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const getPlugins = (isProd = false) => {
   const plugins = [
     new HtmlWebpackPlugin({
-      favicon: './src/assets/images/favicon.ico',
+      favicon: path.resolve(__dirname, './src/assets/images/favicon.ico'),
       buildTime: new Date().toISOString(),
-      template: './public/index.html',
+      template: path.resolve(__dirname, './public/index.html'),
       title: 'Rick and Morty',
       filename: 'index.html',
     }),
@@ -32,12 +32,19 @@ const modulesOptions = {
       use: ['style-loader', 'css-loader'],
     },
     {
-      test: /\.(png|svg|jpg|jpeg|gif)$/i,
+      test: /\.(png|jpg|jpeg|gif)$/i,
       type: 'asset/resource',
     },
     {
       test: /\.(woff|woff2|eot|ttf|otf)$/i,
       type: 'asset/resource',
+    },
+    { test: /\.svg$/, issuer: /\.(s[ca]ss)$/, use: ['asset/resource'] },
+    {
+      test: /\.svg$/i,
+      issuer: /\.[jt]sx?$/,
+      resourceQuery: { not: [/url/] },
+      use: ['@svgr/webpack'],
     },
     {
       test: /\.tsx?$/,
@@ -70,20 +77,25 @@ const resolveOptions = {
 
 const developmentConfig = () => {
   return {
-    entry: './src/index.tsx',
+    entry: path.resolve(__dirname, './src/index.tsx'),
     devtool: 'inline-source-map',
     mode: 'development',
+    devServer: {
+      historyApiFallback: true,
+      open: true,
+      compress: true,
+      hot: true,
+      port: 8080,
+    },
     output: {
-      filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
+      filename: '[name].bundle.js',
+      publicPath: "/",
       clean: true,
     },
     module: modulesOptions,
     plugins: getPlugins(),
     resolve: resolveOptions,
-    optimization: {
-      runtimeChunk: 'single',
-    },
   };
 };
 
