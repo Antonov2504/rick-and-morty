@@ -70,16 +70,25 @@ export const OutletWrapper = styled.div`
   align-items: stretch;
 `;
 
-export const Nav = styled.nav`
+export const Sidebar = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: 20vw;
-  margin: 0;
   padding: 10vh 3vh;
   background-color: rgba(0 0 0 / 70%);
   box-shadow: -1px 0px 20px #000000;
   user-select: none;
+`;
+
+export const Nav = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 `;
 
 export const NavList = styled.ul`
