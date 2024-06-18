@@ -5,4 +5,8 @@ export const errorsMock: ErrorMockType = {
     code: '404',
     title: 'Page Not Found',
   },
+  [ErrorPageDescriptionEnum.forbidden]: {
+    code: '403',
+    title: 'Forbidden',
+  },
 };

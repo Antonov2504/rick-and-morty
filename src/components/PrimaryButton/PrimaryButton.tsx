@@ -4,12 +4,18 @@ import * as Styled from './PrimaryButton.styled';
 
 type PrimaryButtonProps = {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 };
 
-export const PrimaryButton = ({ title, onClick, disabled }: PrimaryButtonProps) => {
+export const PrimaryButton = ({
+  type = 'button',
+  title,
+  onClick = () => undefined,
+  disabled,
+}: PrimaryButtonProps) => {
   return (
-    <Styled.Button type="button" onClick={onClick} disabled={disabled}>{title}</Styled.Button>
+    <Styled.Button type={type} onClick={onClick} disabled={disabled}>{title}</Styled.Button>
   );
 };
