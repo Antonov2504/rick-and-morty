@@ -1,28 +1,28 @@
-import React from 'react';
-
 import { Container } from '@components/Container';
 import { PageHeader } from '@components/PageHeader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Page } from '@constants/pages';
-import charactersJSON from '../../../../mock/characters.json';
-
+import { Error } from '@src/components/Container/Container.styled';
 import * as Styled from './CharacterPage.styled';
 import { ErrorPageRoutePathEnum } from '@pages/ErrorPage/ErrorPage.types';
 import { PrimaryButton } from '@components/PrimaryButton';
 import { TCharacter } from '@pages/CharactersPages/CharactersPages.types';
-
-const CHARACTERS: TCharacter[] = charactersJSON;
-
-const mapCharacters = CHARACTERS.reduce<Record<string, TCharacter>>((acc, curr) => {
-  acc[curr.id] = curr;
-  return acc;
-}, {});
+import { useFetch } from '@src/hooks/useFetch';
+import { Loader } from '@components/Loader';
 
 export const CharacterPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const character = mapCharacters[id];
+  const { data: character, isLoading, error } = useFetch<TCharacter>({ url: `https://rickandmortyapi.com/api/character/${id}` });
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <Error>{error.toString()}</Error>;
+  }
 
   if (character) {
     const { name, status, species, type, gender, image, created } = character;
@@ -83,7 +83,7 @@ export const CharacterPage = () => {
 
           <Styled.Buttons>
             <PrimaryButton title='Prev' onClick={handlePrevClick} disabled={Number(id) === 1} />
-            <PrimaryButton title='Next' onClick={handleNextClick} disabled={Number(id) === CHARACTERS.at(-1).id} />
+            <PrimaryButton title='Next' onClick={handleNextClick} />
           </Styled.Buttons>
         </Container>
       </>

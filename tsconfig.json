@@ -3,9 +3,9 @@
     "outDir": "./dist/",
     "baseUrl": "./",
     "noImplicitAny": true,
-    "module": "es6",
+    "module": "ESNext",
     "target": "es5",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowJs": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -18,8 +18,6 @@
     "checkJs": true,
     "isolatedModules": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "@assets/*": [
         "./assets/*"
@@ -45,6 +43,11 @@
     "strictNullChecks": false,
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true
+  },
+    "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
   },
   "exclude": [
     "node_modules",
