@@ -83,14 +83,13 @@ const developmentConfig = () => {
     devServer: {
       historyApiFallback: true,
       open: true,
-      compress: true,
       hot: true,
-      port: 8080,
+      port: 3010,
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].bundle.js',
-      publicPath: "/",
+      filename: '[name].[contenthash].js',
+      publicPath: '/',
       clean: true,
     },
     module: modulesOptions,
@@ -104,8 +103,9 @@ const productionConfig = () => {
     devtool: false,
     mode: 'production',
     output: {
+      path: path.resolve(__dirname, 'dist'),
       filename: 'main-[hash:8].js',
-      publicPath: '',
+      publicPath: '/',
     },
     module: modulesOptions,
     plugins: getPlugins(true),

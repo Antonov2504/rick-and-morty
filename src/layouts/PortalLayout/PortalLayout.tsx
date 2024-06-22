@@ -1,9 +1,9 @@
-import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import { Page } from '@constants/pages';
 import * as Styled from './PortalLayout.styled';
 import { AuthStatus } from '@components/AuthStatus';
+import { ErrorBoundary } from '@components/ErrorBoundary';
 
 export const PortalLayout = () => {
   const location = useLocation();
@@ -11,7 +11,9 @@ export const PortalLayout = () => {
   return (
     <Styled.Container>
       <Styled.OutletWrapper>
-        <Outlet />
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
       </Styled.OutletWrapper>
 
       <Styled.Sidebar>

@@ -1,29 +1,30 @@
-import React from 'react';
-
 import { Container } from '@components/Container';
 import { PageHeader } from '@components/PageHeader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Page } from '@constants/pages';
-import episodesJSON from '../../../../mock/episodes.json';
 
 import { ErrorPageRoutePathEnum } from '@pages/ErrorPage/ErrorPage.types';
 import { PrimaryButton } from '@components/PrimaryButton';
-import { TEpisode } from '@pages/EpisodesPages/EpisodesPages.types';
+import { Error } from '@src/components/Container/Container.styled';
 import PlaceholderImage from '@src/assets/images/episode.jpg';
 import * as Styled from './EpisodePage.styled';
-
-const EPISODES: TEpisode[] = episodesJSON;
-
-const mapEpisodes = EPISODES.reduce<Record<string, TEpisode>>((acc, curr) => {
-  acc[curr.id] = curr;
-  return acc;
-}, {});
+import { useFetch } from '@src/hooks/useFetch';
+import { TEpisode } from '@pages/EpisodesPages/EpisodesPages.types';
+import { Loader } from '@components/Loader';
 
 export const EpisodePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const series = mapEpisodes[id];
+  const { data: series, isLoading, error } = useFetch<TEpisode>({ url: `https://rickandmortyapi.com/api/episode/${id}` });
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <Error>{error.toString()}</Error>;
+  }
 
   if (series) {
     const { name, air_date, episode, created } = series;
@@ -74,7 +75,7 @@ export const EpisodePage = () => {
 
           <Styled.Buttons>
             <PrimaryButton title='Prev' onClick={handlePrevClick} disabled={Number(id) === 1} />
-            <PrimaryButton title='Next' onClick={handleNextClick} disabled={Number(id) === EPISODES.at(-1).id} />
+            <PrimaryButton title='Next' onClick={handleNextClick} />
           </Styled.Buttons>
         </Container>
       </>

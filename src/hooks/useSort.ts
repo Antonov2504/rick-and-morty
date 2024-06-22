@@ -1,4 +1,5 @@
 import { SortTypes } from '@src/types';
+import { getSorted } from '@src/utils';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -16,20 +17,6 @@ export const useSort = <T>({ data, key }: UseSortParams<T>) => {
   const [currentSort, setCurrentSort] = useState<SortTypes>(initialSort);
   const [sortedData, setSortedData] = useState<T[]>(data);
 
-  const getSorted = (array: T[], sort: SortTypes) => {
-    return [...array].sort((a, b) => {
-      if (a[key] < b[key]) {
-        return sort === 'asc' ? -1 : 1;
-      }
-
-      if (a[key] > b[key]) {
-        return sort === 'asc' ? 1 : -1;
-      }
-
-      return 0;
-    });
-  };
-
   const handleSort = () => {
     if (currentSort === 'desc') {
       delete initialSearchParams.sort;
@@ -42,7 +29,7 @@ export const useSort = <T>({ data, key }: UseSortParams<T>) => {
     }
 
     const newSort = currentSort === 'asc' ? 'desc' : 'asc';
-    const sorted = getSorted(data, newSort);
+    const sorted = getSorted({ array: data, key, sort: newSort });
 
     setCurrentSort(newSort);
     setSortedData(sorted);
@@ -50,12 +37,9 @@ export const useSort = <T>({ data, key }: UseSortParams<T>) => {
   };
 
   useEffect(() => {
-    if (initialSort) {
-      const sorted = getSorted(data, initialSort);
-
-      setSortedData(sorted);
-    }
-  }, []);
+    const sorted = getSorted({ array: data, key, sort: currentSort });
+    setSortedData(sorted);
+  }, [data.length]);
 
   return {
     currentSort,
