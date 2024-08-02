@@ -1,29 +1,30 @@
-import React from 'react';
-
 import { Container } from '@components/Container';
 import { PageHeader } from '@components/PageHeader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Page } from '@constants/pages';
-import locationsJSON from '../../../../mock/locations.json';
+import { Error } from '@src/components/Container/Container.styled';
 
 import { ErrorPageRoutePathEnum } from '@pages/ErrorPage/ErrorPage.types';
 import { PrimaryButton } from '@components/PrimaryButton';
 import PlaceholderImage from '@src/assets/images/episode.jpg';
 import { TLocation } from '@pages/LocationsPages/LocationsPages.types';
 import * as Styled from './LocationPage.styled';
-
-const LOCATIONS: TLocation[] = locationsJSON;
-
-const mapLocations = LOCATIONS.reduce<Record<string, TLocation>>((acc, curr) => {
-  acc[curr.id] = curr;
-  return acc;
-}, {});
+import { useFetch } from '@src/hooks/useFetch';
+import { Loader } from '@components/Loader';
 
 export const LocationPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const locat = mapLocations[id];
+  const { data: locat, isLoading, error } = useFetch<TLocation>({ url: `https://rickandmortyapi.com/api/location/${id}` });
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <Error>{error.toString()}</Error>;
+  }
 
   if (locat) {
     const { name, type, dimension, created } = locat;
@@ -74,7 +75,7 @@ export const LocationPage = () => {
 
           <Styled.Buttons>
             <PrimaryButton title='Prev' onClick={handlePrevClick} disabled={Number(id) === 1} />
-            <PrimaryButton title='Next' onClick={handleNextClick} disabled={Number(id) === LOCATIONS.at(-1).id} />
+            <PrimaryButton title='Next' onClick={handleNextClick} />
           </Styled.Buttons>
         </Container>
       </>
