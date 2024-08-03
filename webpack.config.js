@@ -3,6 +3,8 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { InjectManifest } = require('workbox-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const getPlugins = (isProd = false) => {
   const plugins = [
@@ -12,6 +14,27 @@ const getPlugins = (isProd = false) => {
       template: path.resolve(__dirname, './public/index.html'),
       title: 'Rick and Morty',
       filename: 'index.html',
+    }),
+    new InjectManifest({
+      swSrc: './src/sw.ts',
+      swDest: 'sw.js',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: './manifest.json', to: '' },
+        { from: './src/assets/images/portal.png', to: '' },
+        { from: './src/assets/images/bg-default.jpg', to: '' },
+        { from: './src/assets/images/logo.svg', to: '' },
+        { from: './src/assets/icons/RaM_144x144.png', to: '' },
+        { from: './src/assets/icons/RaM_48x48.png' },
+        { from: './src/assets/icons/RaM_72x72.png' },
+        { from: './src/assets/icons/RaM_96x96.png' },
+        { from: './src/assets/icons/RaM_128x128.png' },
+        { from: './src/assets/icons/RaM_152x152.png' },
+        { from: './src/assets/icons/RaM_192x192.png' },
+        { from: './src/assets/icons/RaM_284x284.png' },
+        { from: './src/assets/icons/RaM_512x512.png' },
+      ],
     }),
   ];
 

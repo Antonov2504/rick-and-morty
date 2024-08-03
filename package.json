@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.js --progress",
     "build:dev": "webpack --config webpack.dev.config.js",
-    "build:prod": "webpack --config webpack.prod.config.js"
+    "build:prod": "webpack --config webpack.prod.config.js",
+    "serve": "npm run build:prod && npx serve -s dist"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +23,7 @@
     "@types/react-dom": "^18.3.0",
     "babel-loader": "^9.1.3",
     "babel-plugin-styled-components": "^2.1.4",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
     "error-overlay-webpack-plugin": "^1.1.1",
     "html-webpack-plugin": "^5.6.0",
@@ -31,13 +33,17 @@
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
+    "webpack-dev-server": "^5.0.4",
+    "workbox-webpack-plugin": "^7.1.0"
   },
   "dependencies": {
     "axios": "^1.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "workbox-core": "^7.1.0",
+    "workbox-precaching": "^7.1.0",
+    "workbox-window": "^7.1.0"
   }
 }

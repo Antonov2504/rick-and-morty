@@ -3,6 +3,7 @@ import './styles';
 import { BrowserRouter } from 'react-router-dom';
 import { NavApp } from '@components/NavApp';
 import { StrictMode } from 'react';
+import { registerServiceWorker } from './registerServiceWorker';
 
 const App = () => {
   return (
@@ -19,3 +20,5 @@ root.render(
     </BrowserRouter>
   </StrictMode>
 );
+
+registerServiceWorker();
